@@ -1,18 +1,15 @@
 import os
 import requests
-from django.conf import settings
 
-TMDB_BASE_URL = "https://api.themoviedb.org/3"
-TMDB_API_KEY = settings.TMDB_API_KEY
+TMDB_API_KEY = os.getenv("TMDB_API_KEY")
+BASE_URL = "https://api.themoviedb.org/3"
 
 def search_movie(query):
-    url = f"{TMDB_BASE_URL}/search/movie"
-    params = {"api_key": TMDB_API_KEY, "query": query}
-    response = requests.get(url, params=params)
-    return response.json()
+    url = f"{BASE_URL}/search/movie?api_key={TMDB_API_KEY}&query={query}"
+    response = requests.get(url)
+    return response.json() if response.status_code == 200 else {}
 
 def get_recommendations(movie_id):
-    url = f"{TMDB_BASE_URL}/movie/{movie_id}/recommendations"
-    params = {"api_key": TMDB_API_KEY}
-    response = requests.get(url, params=params)
-    return response.json()
+    url = f"{BASE_URL}/movie/{movie_id}/recommendations?api_key={TMDB_API_KEY}"
+    response = requests.get(url)
+    return response.json() if response.status_code == 200 else {}
