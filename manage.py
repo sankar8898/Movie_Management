@@ -6,7 +6,7 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'movie_app.settings')
+
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Movie_Management.settings')
 
     try:
