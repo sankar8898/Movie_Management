@@ -1,8 +1,7 @@
 from django.db import models
 
 # Create your models here.
-<<<<<<< HEAD
-=======
+
 from django.db import models
 
 class Movie(models.Model):
@@ -14,4 +13,4 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.title
->>>>>>> origin/feature/geeta
+
