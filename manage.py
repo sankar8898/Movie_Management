@@ -6,7 +6,11 @@ import sys
 
 def main():
     """Run administrative tasks."""
+<<<<<<< HEAD
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'movie_app.settings')
+=======
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Movie_Management.settings')
+>>>>>>> origin/feature/geeta
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
