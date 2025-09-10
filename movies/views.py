@@ -1,7 +1,10 @@
-<<<<<<< HEAD
-from django.shortcuts import render
-import requests
 
+from django.shortcuts import render
+from .models import Movie, Favorite
+import requests
+def movie_search(request):
+    movies = Movie.objects.all()
+    return render(request, 'movies/movie_list.html', {'movies': movies})
 def movie_search(request):
     movies = []
     query = request.GET.get('q')  # Get search term from URL ?q=
@@ -23,12 +26,14 @@ def movie_search(request):
 
 
 # Create your views here.
-=======
+
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .tmdb import search_movie, get_recommendations
 from .serializers import MovieSerializer
-
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from .models import Movie, Favorite
 @api_view(['GET'])
 def search_movies(request):
     query = request.GET.get("q")
@@ -71,4 +76,12 @@ def recommend_movies(request, movie_id):
 
     serializer = MovieSerializer(results, many=True)
     return Response(serializer.data)
->>>>>>> origin/feature/geeta
+
+@login_required
+def add_favorite(request, movie_id):
+    movie = get_object_or_404(Movie, id=movie_id)
+    Favorite.objects.get_or_create(user=request.user, movie=movie)
+    return redirect('movie_list')
+def movie_list(request):
+    movies = Movie.objects.all()
+    return render(request, 'movies/movie_list.html', {'movies': movies})

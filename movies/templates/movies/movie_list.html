@@ -1,0 +1,26 @@
+<!-- movie_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie List</title>
+</head>
+<body>
+    <h1>Movies</h1>
+    {% for movie in movies %}
+        <p>{{ movie.title }} - {{ movie.rating }}</p>
+    {% empty %}
+        <p>No movies found.</p>
+    {% endfor %}
+</body>
+</html>
+<h1>Movies</h1>
+<ul>
+    {% for movie in movies %}
+        <li>
+            {{ movie.title }} - Rating: {{ movie.rating }}
+            <a href="{% url 'add_favorite' movie.id %}">Add to favorites</a>
+        </li>
+    {% empty %}
+        <li>No movies found.</li>
+    {% endfor %}
+</ul>
