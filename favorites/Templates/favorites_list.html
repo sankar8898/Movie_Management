@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>My Favorite Movies</h2>
+<div class="row">
+    {% for movie in favorites %}
+    <div class="col-md-3 mb-3">
+        <div class="card">
+            <img src="{{ movie.poster_url }}" class="card-img-top" alt="{{ movie.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ movie.title }}</h5>
+                <p>Rating: {{ movie.rating }}</p>
+                <p>{{ movie.description|truncatechars:100 }}</p>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>You have no favorite movies yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}

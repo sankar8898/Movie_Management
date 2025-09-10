@@ -1,0 +1,22 @@
+<h2>Search Results</h2>
+<form method="get">
+    <input type="text" name="q" placeholder="Search movie...">
+    <button type="submit">Search</button>
+</form>
+
+<div class="row">
+    {% for movie in movies %}
+    <div class="col-md-3 mb-3">
+        <div class="card">
+            <img src="{{ movie.poster_url }}" alt="{{ movie.title }}" class="card-img-top">
+            <div class="card-body">
+                <h5>{{ movie.title }}</h5>
+                <p>Rating: {{ movie.rating }}</p>
+                <p>{{ movie.description|truncatechars:100 }}</p>
+                <!-- Add to Favorites button will go here -->
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
