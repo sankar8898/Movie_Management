@@ -6,7 +6,10 @@ urlpatterns = [
     path('', views.movie_search, name='movie_search'),
 
     path("search/", views.search_movies, name="search_movies"),
+
     path("recommendations/<int:movie_id>/", views.recommend_movies, name="recommend_movies"),
     path('add-favorite/<int:movie_id>/', views.add_favorite, name='add_favorite'),
-
+    path("details/<str:imdb_id>/", views.movie_details, name="movie_details"),
+    path("top-rated/", views.top_rated_movies, name="top_rated_movies"),
+    path("trending/", views.trending_movies, name="trending_movies"),
 ]
